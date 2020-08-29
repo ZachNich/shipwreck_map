@@ -17,9 +17,5 @@ export default {
     getGenerator(generator, prop, pageids, gpllimit) {
         return fetch(proxyURL + `${wikiURL}&generator=${generator}&prop=${prop}&pageids=${pageids}&gpllimit=${gpllimit}`)
             .then(result => result.json())
-    },
-    practiceQuery() {
-        return fetch(proxyURL + `https://en.wikipedia.org/w/api.php?action=query&generator=links&prop=info&titles=pizza&gpllimit=max&format=json`)
-            .then(result => result.json())
     }
 }
