@@ -7,15 +7,11 @@ import Tooltip from './Tooltip'
 
 const Map = props => {
 
-    const [showModal, setShowModal] = useState(false)
+    // const [showModal, setShowModal] = useState(false)
 
-    const toggleModal = () => {
-        showModal ? setShowModal(true) : setShowModal(false)
-    }
-
-    _onClick = ({x, y, lat, lng, event}) => console.log(x, y, lat, lng, event)
-
-    function _onClick(obj){ console.log(obj.x, obj.y, obj.lat, obj.lng, obj.event);}
+    // const toggleModal = () => {
+    //     showModal ? setShowModal(false) : setShowModal(true)
+    // }
 
     const mapDefaults = {
         center: {
@@ -32,11 +28,8 @@ const Map = props => {
           defaultCenter={mapDefaults.center}
           defaultZoom={mapDefaults.zoom}
         >
-            {showModal
-                ? createPortal(<Tooltip />, document.getElementById('modal'))
-                : null}
             <Icon
-            onClick={_onClick}
+            // onClick={toggleModal}
             lat={59.955413}
             lng={30.337844}
             $hover={true}
