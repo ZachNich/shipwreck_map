@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import DetailModal from './DetailModal';
+import getDetails from './helpers/getDetails';
+import getCoordinates from './helpers/getCoordinates';
+
+let results = getCoordinates()
+getDetails("13723388", false)
 
 ReactDOM.render(
   <React.StrictMode>
-    <DetailModal />
   </React.StrictMode>,
   document.getElementById('root')
 );

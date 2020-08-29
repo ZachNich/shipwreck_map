@@ -6,8 +6,8 @@ export default {
         return fetch(proxyURL + `${wikiURL}&prop=${prop}&pageids=${pageids}`)
             .then(result => result.json())
     },
-    getArticleSection(prop, titles, rvprop, rvsection) {
-        return fetch(proxyURL + `${wikiURL}&prop=${prop}&titles=${titles}&rvprop=${rvprop}&rvsection=${rvsection}`)
+    getArticleSection(prop, pageids, rvprop, rvsection) {
+        return fetch(proxyURL + `${wikiURL}&prop=${prop}&pageids=${pageids}&rvprop=${rvprop}&rvsection=${rvsection}`)
             .then(result => result.json())
     },
     getList(list, cmlimit, cmtitle) {
