@@ -12,8 +12,6 @@ const Map = props => {
     const [showModal, setShowModal] = useState(false)
     const [shipwrecks, setShipwrecks] = useState([])
 
-    
-
     useEffect(() => {
         const results = []
 
@@ -74,6 +72,9 @@ const Map = props => {
           defaultCenter={mapDefaults.center}
           defaultZoom={mapDefaults.zoom}
         >
+        {showModal
+            ? createPortal(<Tooltip />, document.getElementById('modal'))
+            : null}
         {shipwrecks.map(mappedShipwreck =>
             <Icon
             // onClick={toggleModal}
