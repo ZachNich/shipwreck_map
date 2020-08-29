@@ -7,24 +7,32 @@ const DetailModal = props => {
     const getDetails = e => {
         ApiManager.getList("categorymembers", "max", "Category:Lists_of_shipwrecks_by_location")
             .then(response => {
+                console.log("response 1", response)
                 response.query.categorymembers.forEach(category => {
-                    setInterval(ApiManager.getGenerator("links", "info", category.title, "max")
-                    .then(response => {
-                        if (response.query) {
-                            for (let page in response.query.pages) {
-                                if (page.length) {
-                                    setInterval(ApiManager.getArticleByProp("coordinates", page.title)
-                                    .then(response => {
-                                        for (let page in response.query.pages) {
-                                            if (page.coordinates) {
-                                                console.log("pageInfo", page.title, page.coordinates)
+                    ApiManager.getGenerator("links", "info", category.pageid, "max")
+                        .then(response => {
+                            console.log("response 2", response)
+                            if (response.query) {
+                                for (Object.entries(response.query.pages)) {
+                                    console.log(property["length"])
+                                    if (property["length"] && property["pageid"]) {
+                                        ApiManager.getArticleByProp("coordinates", property.pageid.toString())
+                                        .then(response => {
+                                            console.log("response 3", response)
+                                            for (let page in response.query.pages) {
+                                                if (page.coordinates) {
+                                                    ApiManager.getArticleSection("revisions", page.title, "content", "0")
+                                                    .then(response => {
+                                                        console.log("response 4", response)
+                                                        setDetails(response["*"])
+                                                    })
+                                                }
                                             }
-                                        }
-                                    }), 6000)
+                                        })
+                                    }
                                 }
                             }
-                        }
-                    }), 6000)
+                        })
                 })
             })
     }
