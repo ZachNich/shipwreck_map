@@ -15,7 +15,6 @@ export default {
             .then(result => result.json())
     },
     getGenerator(generator, prop, pageids, gpllimit) {
-        console.log('urlFetch', proxyURL + `${wikiURL}&generator=${generator}&prop=${prop}&pageids=${pageids}&gpllimit=${gpllimit}`)
         return fetch(proxyURL + `${wikiURL}&generator=${generator}&prop=${prop}&pageids=${pageids}&gpllimit=${gpllimit}`)
             .then(result => result.json())
     },

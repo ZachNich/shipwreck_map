@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import ApiManager from './modules';
 
 const DetailModal = props => {
-    const [details, setDetails] = useState()
+    const [details, setDetails] = useState([])
 
     const getDetails = e => {
+        const results = []
         ApiManager.getList("categorymembers", "max", "Category:Lists_of_shipwrecks_by_location")
             .then(response => {
                 console.log("response 1", response)
@@ -13,28 +14,34 @@ const DetailModal = props => {
                         .then(response => {
                             console.log("response 2", response)
                             if (response.query) {
-                                for (Object.entries(response.query.pages)) {
-                                    console.log(property["length"])
-                                    if (property["length"] && property["pageid"]) {
-                                        ApiManager.getArticleByProp("coordinates", property.pageid.toString())
+                                Object.entries(response.query.pages).forEach(entry => {
+                                    console.log('entry', entry)
+                                    if (entry[1].length) {
+                                        ApiManager.getArticleByProp("coordinates", entry[0])
                                         .then(response => {
                                             console.log("response 3", response)
-                                            for (let page in response.query.pages) {
-                                                if (page.coordinates) {
-                                                    ApiManager.getArticleSection("revisions", page.title, "content", "0")
-                                                    .then(response => {
-                                                        console.log("response 4", response)
-                                                        setDetails(response["*"])
+                                            Object.entries(response.query.pages).forEach(entry => {
+                                                console.log("entry2", entry)
+                                                if (entry[1].coordinates) {
+                                                    console.log("got the coords")
+                                                    results.push({
+                                                        "pageid": entry[0],
+                                                        "coordinates": {
+                                                            "lat": entry[1].coordinates[0].lat,
+                                                            "lon": entry[1].coordinates[0].lon
+                                                        }
                                                     })
+                                                    console.log("results prog", results)
                                                 }
-                                            }
+                                            })
+                                            setDetails(results)
                                         })
                                     }
-                                }
+                                })
                             }
                         })
+                    })
                 })
-            })
     }
 
     useEffect(() => {
@@ -44,7 +51,6 @@ const DetailModal = props => {
     return (
         <>
             <h3>Details</h3>
-            <div>{details}</div>
         </>
     )
 }
