@@ -27,7 +27,16 @@ code {
   text-align: center;
 }
 
-#extract {
+#detail-main {
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+#detail-img {
+  border: black solid 5px;
+}
+
+#detail-extract {
   padding-left: 1em;
   padding-right: 1em;
 }

@@ -32,9 +32,14 @@ const ShipDetails = props => {
                     })
             })
     }, [])
+
+    const goHome = e => {
+        e.preventDefault()
+        props.history.push('/')
+    }
     
     return (
-        <article className="details_main">
+        <article id="detail-main">
             {imgBool
             ? <img src={img} alt="pic" width={500} align="right" id='detail-img'/>
             : null}
