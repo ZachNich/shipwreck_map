@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 import './index.css';
-import DetailModal from './DetailModal';
+import Map from './components/Map';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <DetailModal />
-  </React.StrictMode>,
+  <Router>
+    <Map />
+  </Router>,
   document.getElementById('root')
 );
