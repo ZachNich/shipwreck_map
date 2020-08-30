@@ -1,5 +1,6 @@
 const wikiURL = `https://en.wikipedia.org/w/api.php?action=query&format=json`
 const proxyURL = `https://thingproxy.freeboard.io/fetch/`
+const database = `http://localhost:8088/`
 
 export default {
     getArticleByProp(prop, pageids) {

@@ -30,9 +30,10 @@ const getCoordinates = () => {
                         }
                     })
                 })
-            })
-    console.log(results)
-    return results
+        })
+        .then(() => {
+            console.log(results)
+        })
 }
 
-export default getCoordinates
+export default getCoordinates 
