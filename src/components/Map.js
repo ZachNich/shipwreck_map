@@ -38,14 +38,22 @@ const Map = props => {
           defaultCenter={mapDefaults.center}
           defaultZoom={mapDefaults.zoom}
         >
-        {shipwrecks.map(mappedShipwreck =>
-            <Icon
-            key={mappedShipwreck.id}
-            lat={mappedShipwreck.coordinates.lat}
-            lng={mappedShipwreck.coordinates.lon}
-            id={mappedShipwreck.id}
-            />
-        )}
+        {showModal
+            ? createPortal(<Tooltip />, document.getElementById('modal'))
+            : null}
+        {shipwrecks.map(mappedShipwreck => {
+            return (
+                <Icon
+                setShowModal={setShowModal}
+                setCurrentID={props.setCurrentID}
+                pageid={mappedShipwreck.id}
+                key={mappedShipwreck.pageid}
+                lat={mappedShipwreck.coordinates.lat}
+                lng={mappedShipwreck.coordinates.lon}
+                // $hover={true}
+                />
+            )
+        })}
         </GoogleMapReact>
       </div>
     )

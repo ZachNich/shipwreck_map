@@ -21,7 +21,6 @@ const getDetails = (pageid, bool) => {
                             "lon": 26.8875
                           },
                         ""
-
                     }
                 })
             }

@@ -18,18 +18,16 @@ const ShipDetails = props => {
                     "lon": props.lon
                   },
                 "extract": response.query.pages[props.id].extract
-
             }
+            setInfo(shipInfo)
         })
     }, [])
     
     return (
-        <article className='tooltip'>
-            <section className='tooltip-img'>
-                <img src={require('../images/historic-ship.png')} alt='Ship' />
-            </section>
-            <section className='tooltip-info'>
-                <p>Here's where all the info goes</p>
+        <article className="details_main">
+            <img src={info.img} alt="pic" />
+            <section>
+                {info.extract}
             </section>
         </article>
     )

@@ -1,13 +1,14 @@
 const wikiURL = `https://en.wikipedia.org/w/api.php?action=query&format=json`
 const proxyURL = `https://thingproxy.freeboard.io/fetch/`
+const database = `http://localhost:8088/`
 
 export default {
     getArticleByProp(prop, pageids) {
         return fetch(proxyURL + `${wikiURL}&prop=${prop}&pageids=${pageids}`)
             .then(result => result.json())
     },
-    getArticleSection(prop, titles, rvprop, rvsection) {
-        return fetch(proxyURL + `${wikiURL}&prop=${prop}&titles=${titles}&rvprop=${rvprop}&rvsection=${rvsection}`)
+    getArticleSection(prop, pageids, rvprop, rvsection) {
+        return fetch(proxyURL + `${wikiURL}&prop=${prop}&pageids=${pageids}&rvprop=${rvprop}&rvsection=${rvsection}`)
             .then(result => result.json())
     },
     getList(list, cmlimit, cmtitle) {
@@ -21,5 +22,8 @@ export default {
     getTooltip(pageId) {
         return fetch(proxyURL + `${wikiURL}&prop=extracts&pageids=${pageId}`)
             .then(result => result.json())
+    },
+    getImages(pageId) {
+        return fetch(proxyURL + `${wikiURL}`)
     }
 }
