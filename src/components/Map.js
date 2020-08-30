@@ -35,9 +35,9 @@ const Map = props => {
           defaultCenter={mapDefaults.center}
           defaultZoom={mapDefaults.zoom}
         >
-        {showModal
+        {/* {showModal
             ? createPortal(<Tooltip />, document.getElementById('modal'))
-            : null}
+            : null} */}
         {/* {shipwrecks.map(mappedShipwreck =>
             <Icon
             onClick={toggleModal}

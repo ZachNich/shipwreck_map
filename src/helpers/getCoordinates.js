@@ -31,14 +31,16 @@ const getCoordinates = () => {
                                                 // console.log("results prog", results)
                                             }
                                         })
-                                        console.log(results)
-                                        return results
                                     })
                                 }
                             })
                         }
                     })
-            })
+                })
+        })
+        .then(() => {
+            console.log(results)
+            return results
         })
 }
 
