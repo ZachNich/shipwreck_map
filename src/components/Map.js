@@ -11,10 +11,6 @@ const Map = props => {
     const [showModal, setShowModal] = useState(false)
     const [shipwrecks, setShipwrecks] = useState([])
 
-    const toggleModal = () => {
-        showModal ? setShowModal(false) : setShowModal(true)
-    }
-
     const mapDefaults = {
         center: {
             lat: 34.782599,
@@ -42,15 +38,19 @@ const Map = props => {
         {showModal
             ? createPortal(<Tooltip />, document.getElementById('modal'))
             : null}
-        {shipwrecks.map(mappedShipwreck =>
-            <Icon
-            onClick={toggleModal}
-            key={mappedShipwreck.pageid}
-            lat={mappedShipwreck.coordinates.lat}
-            lng={mappedShipwreck.coordinates.lon}
-            // $hover={true}
-            />
-        )}
+        {shipwrecks.map(mappedShipwreck => {
+            return (
+                <Icon
+                setShowModal={setShowModal}
+                setCurrentID={props.setCurrentID}
+                pageid={mappedShipwreck.id}
+                key={mappedShipwreck.pageid}
+                lat={mappedShipwreck.coordinates.lat}
+                lng={mappedShipwreck.coordinates.lon}
+                // $hover={true}
+                />
+            )
+        })}
         </GoogleMapReact>
       </div>
     )
