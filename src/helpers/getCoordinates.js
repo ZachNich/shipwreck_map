@@ -40,7 +40,6 @@ const getCoordinates = () => {
         })
         .then(() => {
             console.log(results)
-            return results
         })
 }
 

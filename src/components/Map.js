@@ -13,7 +13,7 @@ const Map = props => {
     const [shipwrecks, setShipwrecks] = useState([])
 
     useEffect(() => {
-        setShipwrecks(getCoordinates())
+        getCoordinates()
     }, [])
 
     const toggleModal = () => {
