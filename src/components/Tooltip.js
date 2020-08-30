@@ -1,6 +1,27 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import ApiManager from '../modules/modules'
 
-const Tooltip = props => {
+const ShipDetails = props => {
+
+    const [info, setInfo] = useState({})
+
+    useEffect(() => {
+        ApiManager.getShipDetails(props.id)
+        .then(response => {
+            const shipInfo = {
+                "id": null,
+                "name": props.name,
+                "nationality": props.nationality,
+                "date": props.date,
+                "coordinates": {
+                    "lat": props.lat,
+                    "lon": props.lon
+                  },
+                "extract": response.query.pages[props.id].extract
+
+            }
+        })
+    }, [])
     
     return (
         <article className='tooltip'>
@@ -14,4 +35,4 @@ const Tooltip = props => {
     )
 }
 
-export default Tooltip
+export default ShipDetails

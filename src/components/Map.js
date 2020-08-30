@@ -3,17 +3,16 @@ import {createPortal} from 'react-dom'
 import GoogleMapReact from 'google-map-react';
 import APIkey from '../modules/api'
 import Icon from './Icon'
-import Tooltip from './Tooltip'
 import ApiManager from '../modules/modules';
 
 const Map = props => {
 
-    const [showModal, setShowModal] = useState(false)
+    // const [showModal, setShowModal] = useState(false)
     const [shipwrecks, setShipwrecks] = useState([])
 
-    const toggleModal = () => {
-        showModal ? setShowModal(false) : setShowModal(true)
-    }
+    // const toggleModal = () => {
+    //     showModal ? setShowModal(false) : setShowModal(true)
+    // }
 
     const mapDefaults = {
         center: {
@@ -39,16 +38,12 @@ const Map = props => {
           defaultCenter={mapDefaults.center}
           defaultZoom={mapDefaults.zoom}
         >
-        {showModal
-            ? createPortal(<Tooltip />, document.getElementById('modal'))
-            : null}
         {shipwrecks.map(mappedShipwreck =>
             <Icon
-            onClick={toggleModal}
-            key={mappedShipwreck.pageid}
+            key={mappedShipwreck.id}
             lat={mappedShipwreck.coordinates.lat}
             lng={mappedShipwreck.coordinates.lon}
-            // $hover={true}
+            id={mappedShipwreck.id}
             />
         )}
         </GoogleMapReact>

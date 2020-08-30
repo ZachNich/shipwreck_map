@@ -15,7 +15,7 @@ code {
 .tooltip {
   background-color: whitesmoke;
   border: black solid 2px;
-  position: relative;
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;

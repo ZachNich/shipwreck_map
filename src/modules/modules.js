@@ -17,5 +17,9 @@ export default {
     getGenerator(generator, prop, pageids, gpllimit) {
         return fetch(proxyURL + `${wikiURL}&generator=${generator}&prop=${prop}&pageids=${pageids}&gpllimit=${gpllimit}`)
             .then(result => result.json())
+    },
+    getTooltip(pageId) {
+        return fetch(proxyURL + `${wikiURL}&prop=extracts&pageids=${pageId}`)
+            .then(result => result.json())
     }
 }
