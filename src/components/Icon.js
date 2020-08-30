@@ -10,7 +10,7 @@ const Icon = props => {
     }
 
     return (
-        <img id={props.pageid} src={require('../images/historic-ship.png')} alt='Ship' onClick={showDetails} />
+        <img id={props.pageid} src={require('../images/historic-ship.png')} alt='Ship' onClick={() => props.history.push(`/${props.pageid}`)} />
     )
 }
 

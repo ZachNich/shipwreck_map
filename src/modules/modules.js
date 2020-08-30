@@ -19,11 +19,16 @@ export default {
         return fetch(proxyURL + `${wikiURL}&generator=${generator}&prop=${prop}&pageids=${pageids}&gpllimit=${gpllimit}`)
             .then(result => result.json())
     },
-    getTooltip(pageId) {
+    getShipDetails(pageId) {
         return fetch(proxyURL + `${wikiURL}&prop=extracts&pageids=${pageId}`)
             .then(result => result.json())
     },
-    getImages(pageId) {
-        return fetch(proxyURL + `${wikiURL}`)
+    getImageURLs(pageId) {
+        return fetch(proxyURL + `${wikiURL}&prop=images&pageids=${pageId}`)
+            .then(result => result.json())
+    },
+    getImage(title) {
+        return fetch(proxyURL + `${wikiURL}&prop=imageinfo&titles=${title}&iiprop=url`)
+            .then(result => result.json())
     }
 }

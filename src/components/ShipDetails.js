@@ -3,31 +3,42 @@ import ApiManager from '../modules/modules'
 
 const ShipDetails = props => {
 
-    const [info, setInfo] = useState({})
+    const [extract, setExtract] = useState('')
+    const [img, setImg] = useState('')
+    const [imgBool, setImgBool] = useState(false)
+
+    const pageId = props.match.params.pageId
 
     useEffect(() => {
-        ApiManager.getShipDetails(props.id)
-        .then(response => {
-            const shipInfo = {
-                "id": null,
-                "name": props.name,
-                "nationality": props.nationality,
-                "date": props.date,
-                "coordinates": {
-                    "lat": props.lat,
-                    "lon": props.lon
-                  },
-                "extract": response.query.pages[props.id].extract
-            }
-            setInfo(shipInfo)
-        })
+        ApiManager.getShipDetails(pageId)
+            .then(response => {
+                setExtract(response.query.pages[pageId].extract)
+            })
+    }, [])
+
+    useEffect(() => {
+        ApiManager.getImageURLs(pageId)
+            .then(response => {
+                let title = response.query.pages[pageId].images[2].title
+                title = title.replace(/ /g,"_")
+                ApiManager.getImage(title)
+                    .then(response => {
+                        if (response.query.pages.hasOwnProperty('-1')) {
+                            if (response.query.pages['-1'].hasOwnProperty('imageinfo')) {
+                            setImg(response.query.pages['-1'].imageinfo[0].url)
+                            setImgBool(true)
+                            }
+                        }
+                    })
+            })
     }, [])
     
     return (
         <article className="details_main">
-            <img src={info.img} alt="pic" />
-            <section>
-                {info.extract}
+            {imgBool
+            ? <img src={img} alt="pic" width={500} align="right" id='detail-img'/>
+            : null}
+            <section id='extract' dangerouslySetInnerHTML={{__html: extract}}>
             </section>
         </article>
     )
