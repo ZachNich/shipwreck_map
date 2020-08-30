@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import getCoordinates from './helpers/getCoordinates';
 
 const DetailsPage = props => {
+    const [wrecks, setWrecks] = useState([])
+
+    setWrecks(getCoordinates());
 
     const goHome = e => {
         e.preventDefault()
