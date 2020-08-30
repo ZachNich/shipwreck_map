@@ -1,4 +1,4 @@
-import ApiManager from '../api/modules';
+import ApiManager from '../modules/modules';
 
 const getDetails = (pageid, bool) => {
     ApiManager.getArticleSection("revisions", pageid, "content", "0")

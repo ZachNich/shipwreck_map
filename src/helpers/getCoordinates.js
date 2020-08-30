@@ -1,4 +1,4 @@
-import ApiManager from '../api/modules';
+import ApiManager from '../modules/modules';
 
 const getCoordinates = () => {
     const results = []
